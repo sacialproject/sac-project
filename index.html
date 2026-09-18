@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAC PROJECT · Social Adaptation Capital</title>
+<meta name="description" content="Open theory and bilingual assessment of adaptation meta-skills. Открытая теория и двуязычная диагностика метанавыков адаптации.">
+<meta name="author" content="SAC PROJECT · sacialproject@gmail.com">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<style>
+:root{
+  --bg:#080b14;--bg2:#0f1522;--card:#131a2b;--card2:#1a2136;
+  --ink:#eef2ff;--muted:#8894b0;--line:#232c44;
+  --accent:#7c8cff;--accent2:#b57cff;
+  --good:#22d3a5;--mid:#f5b942;--low:#ff6b7a;--soft:#151c30;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124,140,255,.16), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(181,124,255,.12), transparent 45%),
+    var(--bg);
+  color:var(--ink);line-height:1.55;min-height:100vh;
+  padding:20px 12px 60px;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:980px;margin:0 auto;}
+.pwrap{position:fixed;top:0;left:0;right:0;height:3px;z-index:99;background:rgba(255,255,255,.05);}
+.pbar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s ease;box-shadow:0 0 12px rgba(124,140,255,.6);}
+
+/* LANG SWITCH */
+.lang-switch{
+  position:fixed;top:16px;right:16px;z-index:1000;
+  display:flex;background:rgba(19,26,43,.92);backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:999px;padding:4px;
+  box-shadow:0 8px 24px -8px rgba(0,0,0,.6);
+}
+.lang-switch button{
+  border:none;background:transparent;color:var(--muted);
+  padding:7px 16px;border-radius:999px;cursor:pointer;
+  font-size:.78rem;font-weight:700;letter-spacing:.05em;
+  font-family:inherit;transition:.2s;
+}
+.lang-switch button.on{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;box-shadow:0 4px 12px -4px rgba(124,140,255,.6);
+}
+
+/* HERO */
+.hero{text-align:center;padding:80px 20px 50px;position:relative;overflow:hidden;}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 30%, rgba(124,140,255,.18), transparent 60%);
+  pointer-events:none;animation:shift 18s ease-in-out infinite;
+}
+@keyframes shift{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(2%,-2%) scale(1.05);}
+}
+.hero-inner{position:relative;z-index:1;}
+.hero .logo{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:6px 16px;border:1px solid var(--line);border-radius:999px;
+  font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:24px;background:rgba(19,26,43,.7);
+  backdrop-filter:blur(8px);
+}
+.hero .logo .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 12px var(--accent);animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.hero h1{
+  font-size:clamp(2rem,5.5vw,3.6rem);letter-spacing:-.04em;font-weight:800;
+  line-height:1.05;margin-bottom:20px;
+  background:linear-gradient(135deg,#fff 20%,#a5b4fc 60%,#c4b5fd 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  max-width:820px;margin-left:auto;margin-right:auto;
+}
+.hero p{
+  color:#a8b2cc;font-size:clamp(1rem,1.4vw,1.15rem);
+  max-width:640px;margin:0 auto 32px;
+}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;}
+.hero .stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:24px;max-width:760px;margin:0 auto;
+  padding-top:32px;border-top:1px solid var(--line);
+}
+.hero .stat .v{
+  font-size:1.8rem;font-weight:800;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#fff,#a5b4fc);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .stat .l{
+  font-size:.72rem;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.08em;margin-top:4px;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 28px;border-radius:14px;
+  font-size:.95rem;font-weight:600;
+  text-decoration:none;cursor:pointer;border:none;
+  font-family:inherit;transition:.25s;
+}
+.btn-p{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;box-shadow:0 12px 32px -10px rgba(124,140,255,.7);
+}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(124,140,255,.9);}
+.btn-g{
+  background:rgba(19,26,43,.6);color:var(--ink);
+  border:1px solid var(--line);backdrop-filter:blur(8px);
+}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important;}
+
+/* CARDS */
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:18px;padding:26px;margin-bottom:18px;
+  box-shadow:0 20px 40px -25px rgba(0,0,0,.7);
+  animation:slide .35s ease;
+}
+@keyframes slide{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.card h2{
+  font-size:1.15rem;font-weight:600;letter-spacing:-.01em;
+  margin-bottom:14px;display:flex;align-items:center;gap:12px;
+}
+.card h2::before{
+  content:"";width:4px;height:20px;border-radius:3px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+}
+.card .lead{color:var(--muted);font-size:.9rem;margin-bottom:18px;}
+.module-tag{
+  display:inline-block;padding:4px 10px;border-radius:6px;
+  font-size:.7rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;background:rgba(124,140,255,.15);
+  color:var(--accent);margin-bottom:10px;
+}
+
+/* GRIDS */
+.grid-mods{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:10px;margin:18px 0 8px;
+}
+.mod{
+  padding:14px;border-radius:12px;border:1px solid var(--line);
+  background:var(--soft);transition:.2s;
+}
+.mod:hover{border-color:rgba(124,140,255,.4);transform:translateY(-2px);}
+.mod .n{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.mod .t{font-size:.92rem;font-weight:600;margin-top:4px;}
+.mod .d{font-size:.75rem;color:var(--muted);margin-top:6px;}
+
+.grid-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+.field label{
+  display:block;font-size:.78rem;color:var(--muted);margin-bottom:6px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.05em;
+}
+.field input,.field select,.field textarea{
+  width:100%;padding:11px 13px;border-radius:10px;
+  border:1px solid var(--line);background:var(--bg2);color:var(--ink);
+  font-size:.95rem;font-family:inherit;transition:.2s;
+}
+.field textarea{resize:vertical;min-height:90px;}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(124,140,255,.15);
+}
+
+/* SJT */
+.sjt-scenario{
+  background:var(--soft);border-left:3px solid var(--accent);
+  padding:16px 18px;border-radius:10px;margin-bottom:18px;
+  font-size:.95rem;color:#cfd6e8;
+}
+.sjt-opts{display:flex;flex-direction:column;gap:10px;}
+.sjt-opt{
+  padding:14px 16px;border:1px solid var(--line);border-radius:12px;
+  cursor:pointer;transition:.18s;background:var(--bg2);font-size:.92rem;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.sjt-opt:hover{border-color:var(--accent);background:rgba(124,140,255,.06);}
+.sjt-opt.sel{
+  border-color:var(--accent);background:rgba(124,140,255,.12);
+  box-shadow:0 0 0 1px var(--accent);
+}
+.sjt-opt .letter{
+  flex-shrink:0;width:26px;height:26px;border-radius:8px;
+  background:var(--line);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.8rem;
+}
+.sjt-opt.sel .letter{background:var(--accent);color:#fff;}
+
+/* LIKERT */
+.q{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:12px 8px;border-radius:10px;transition:.15s;}
+.q:hover{background:var(--soft);}
+.q .num{color:var(--muted);font-weight:600;font-size:.85rem;text-align:right;padding-top:3px;}
+.q .txt{font-size:.92rem;}
+.lik{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.lik label{
+  flex:1;min-width:52px;padding:8px 4px;text-align:center;
+  border:1px solid var(--line);border-radius:9px;cursor:pointer;
+  font-size:.78rem;color:var(--muted);background:var(--bg2);
+  transition:.15s;user-select:none;
+}
+.lik label:hover{border-color:var(--accent);color:var(--accent);}
+.lik label.on{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-color:transparent;color:#fff;font-weight:600;
+}
+
+/* VIGNETTES */
+.vign{
+  background:linear-gradient(135deg,var(--card2),var(--bg2));
+  border:1px solid var(--line);border-radius:14px;
+  padding:20px;margin-bottom:16px;
+}
+.vign .vtext{font-size:.95rem;color:#cfd6e8;margin-bottom:14px;font-style:italic;}
+.vign .vopts{display:flex;flex-direction:column;gap:8px;}
+.vign .vopt{
+  padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+  cursor:pointer;background:var(--bg);transition:.15s;font-size:.88rem;
+}
+.vign .vopt:hover{border-color:var(--accent);}
+.vign .vopt.sel{border-color:var(--accent);background:rgba(124,140,255,.1);}
+
+/* COGNITIVE */
+.cog-stage{
+  min-height:260px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:20px;
+  background:var(--bg2);border-radius:14px;padding:26px;
+  border:1px solid var(--line);
+}
+.cog-prompt{font-size:.95rem;color:var(--muted);text-align:center;max-width:500px;}
+.cog-stim{width:130px;height:130px;border-radius:50%;animation:pop .3s ease;}
+@keyframes pop{from{transform:scale(.7);opacity:0;}to{transform:scale(1);opacity:1;}}
+.cog-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.cog-btn{
+  padding:14px 24px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);color:var(--ink);font-size:.95rem;font-weight:600;
+  cursor:pointer;transition:.15s;font-family:inherit;min-width:120px;
+}
+.cog-btn:hover{border-color:var(--accent);transform:translateY(-2px);}
+.cog-seq{display:flex;gap:14px;font-size:2.4rem;font-weight:700;color:var(--accent);letter-spacing:.1em;}
+.cog-progress{width:100%;height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:14px;}
+.cog-progress .f{height:100%;background:var(--accent);transition:width .3s;}
+.pattern-choices{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:center;}
+.pattern-choice{
+  width:60px;height:60px;border-radius:10px;border:1px solid var(--line);
+  background:var(--bg2);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;font-size:1.4rem;font-weight:700;transition:.15s;
+}
+.pattern-choice:hover{border-color:var(--accent);transform:translateY(-2px);}
+.rt-fb{font-size:.8rem;color:var(--muted);margin-top:8px;text-align:center;font-variant-numeric:tabular-nums;}
+
+/* ACTIONS */
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;}
+
+/* REPORT */
+.report{display:none;}
+.report.show{display:block;animation:slide .4s ease;}
+.score-hero{
+  background:linear-gradient(135deg,#1b2340,#2a1b40);
+  border:1px solid var(--line);border-radius:20px;
+  padding:32px;display:grid;grid-template-columns:200px 1fr;
+  gap:32px;align-items:center;margin-bottom:20px;
+}
+@media(max-width:640px){.score-hero{grid-template-columns:1fr;text-align:center;}}
+.donut{position:relative;width:180px;height:180px;margin:0 auto;}
+.donut svg{transform:rotate(-90deg);}
+.donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.donut .val{
+  font-size:2.6rem;font-weight:700;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#fff,#a5b4fc);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.donut .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;}
+.score-info h2{font-size:1.35rem;margin-bottom:8px;letter-spacing:-.02em;}
+.score-info .lvl{
+  display:inline-block;padding:5px 14px;border-radius:999px;
+  font-size:.78rem;font-weight:600;letter-spacing:.05em;
+  background:rgba(124,140,255,.2);color:#a5b4fc;
+  border:1px solid rgba(124,140,255,.4);margin-bottom:12px;
+}
+.score-info p{color:var(--muted);font-size:.92rem;}
+.sub{margin-bottom:18px;}
+.sub .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
+.sub .head .n{font-size:.9rem;font-weight:600;}
+.sub .head .v{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+.sub .track{height:9px;border-radius:999px;background:var(--line);overflow:hidden;}
+.sub .track .f{height:100%;width:0;border-radius:999px;transition:width 1s cubic-bezier(.4,0,.2,1);}
+.f.low{background:linear-gradient(90deg,#ff6b7a,#ff8b6b);}
+.f.mid{background:linear-gradient(90deg,#f5b942,#f5d442);}
+.f.good{background:linear-gradient(90deg,#22d3a5,#4ade80);}
+.tag{
+  font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:999px;
+  margin-left:8px;vertical-align:middle;letter-spacing:.03em;text-transform:uppercase;
+}
+.tag.res{background:rgba(34,211,165,.15);color:#22d3a5;}
+.tag.def{background:rgba(255,107,122,.15);color:#ff6b7a;}
+.tag.ok{background:rgba(124,140,255,.15);color:#a5b4fc;}
+.rec{
+  background:var(--soft);border-left:3px solid var(--accent);
+  padding:14px 18px;border-radius:10px;margin-bottom:10px;
+  font-size:.9rem;color:#cfd6e8;
+}
+.rec b{color:var(--accent);}
+.rec.warn{border-left-color:var(--low);}
+.rec.good{border-left-color:var(--good);}
+
+/* SUBMIT BOX */
+.submit-box{
+  background:linear-gradient(160deg,var(--card2),var(--bg2));
+  border:1px solid rgba(124,140,255,.35);border-radius:16px;
+  padding:24px;margin-bottom:20px;
+}
+.submit-box h3{font-size:1rem;margin-bottom:10px;color:var(--accent);}
+.submit-box p{color:#cfd6e8;font-size:.9rem;margin-bottom:16px;}
+.consent{
+  display:flex;gap:12px;align-items:flex-start;padding:14px;
+  background:var(--bg);border:1px solid var(--line);
+  border-radius:12px;margin-bottom:16px;cursor:pointer;transition:.15s;
+}
+.consent:hover{border-color:var(--accent);}
+.consent input{display:none;}
+.consent .box{
+  flex-shrink:0;width:22px;height:22px;border-radius:6px;
+  border:2px solid var(--line);background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  transition:.15s;margin-top:1px;
+}
+.consent input:checked + .box{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-color:transparent;
+}
+.consent input:checked + .box::after{content:"✓";color:#fff;font-weight:700;font-size:.85rem;}
+.consent .txt{font-size:.86rem;color:#cfd6e8;line-height:1.5;}
+.consent .txt b{color:var(--ink);}
+.disclaimer{
+  background:rgba(255,107,122,.05);
+  border:1px solid rgba(255,107,122,.25);
+  border-radius:12px;padding:16px;margin-bottom:20px;
+  font-size:.82rem;color:#ffb0ba;line-height:1.5;
+}
+.disclaimer b{color:#ff8b98;}
+.notice{
+  background:rgba(245,185,66,.08);
+  border:1px solid rgba(245,185,66,.3);
+  color:#f5d442;padding:12px 16px;border-radius:10px;
+  font-size:.85rem;margin-top:14px;
+}
+.notice.err{
+  background:rgba(255,107,122,.08);
+  border-color:rgba(255,107,122,.3);color:#ff8b98;
+}
+.notice.ok{
+  background:rgba(34,211,165,.08);
+  border-color:rgba(34,211,165,.3);color:#22d3a5;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;padding:60px 20px 20px;
+  border-top:1px solid var(--line);margin-top:60px;
+  color:var(--muted);font-size:.82rem;
+}
+footer a{color:var(--accent);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+footer .brand{
+  font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+
+.hidden{display:none!important;}
+
+@media print{
+  body{background:#fff;color:#000;padding:0;}
+  .actions,.pwrap,.lang-switch,.hero-cta,.submit-box{display:none!important;}
+  .card{border:1px solid #ccc;box-shadow:none;break-inside:avoid;background:#fff;color:#000;}
+}
+@media(max-width:640px){
+  body{padding:12px 8px 40px;}
+  .lang-switch{top:10px;right:10px;}
+  .lang-switch button{padding:6px 12px;font-size:.72rem;}
+  .hero{padding:60px 16px 30px;}
+  .card{padding:18px;}
+  .actions .btn{width:100%;justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="pwrap"><div class="pbar" id="pbar"></div></div>
+
+<div class="lang-switch">
+  <button data-lang-btn="ru" class="on">RU</button>
+  <button data-lang-btn="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<!-- ================= LANDING ================= -->
+<div id="view-landing">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo"><span class="dot"></span> SAC PROJECT · v2.0</div>
+      <h1 data-i18n="hero.title"></h1>
+      <p data-i18n="hero.sub"></p>
+      <div class="hero-cta">
+        <button class="btn btn-p" id="startBtn" data-i18n="hero.cta"></button>
+        <a href="#about" class="btn btn-g" data-i18n="hero.more"></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="v">7</div><div class="l" data-i18n="hero.s1"></div></div>
+        <div class="stat"><div class="v">5</div><div class="l" data-i18n="hero.s2"></div></div>
+        <div class="stat"><div class="v">~25</div><div class="l" data-i18n="hero.s3"></div></div>
+        <div class="stat"><div class="v">RU·EN</div><div class="l" data-i18n="hero.s4"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="card">
+    <h2 data-i18n="about.title"></h2>
+    <p class="lead" data-i18n="about.lead"></p>
+    <div class="grid-mods">
+      <div class="mod"><div class="n">01</div><div class="t" data-i18n="c.kog.t"></div><div class="d" data-i18n="c.kog.d"></div></div>
+      <div class="mod"><div class="n">02</div><div class="t" data-i18n="c.emo.t"></div><div class="d" data-i18n="c.emo.d"></div></div>
+      <div class="mod"><div class="n">03</div><div class="t" data-i18n="c.kom.t"></div><div class="d" data-i18n="c.kom.d"></div></div>
+      <div class="mod"><div class="n">04</div><div class="t" data-i18n="c.vol.t"></div><div class="d" data-i18n="c.vol.d"></div></div>
+      <div class="mod"><div class="n">05</div><div class="t" data-i18n="c.etp.t"></div><div class="d" data-i18n="c.etp.d"></div></div>
+      <div class="mod"><div class="n">06</div><div class="t" data-i18n="c.est.t"></div><div class="d" data-i18n="c.est.d"></div></div>
+      <div class="mod"><div class="n">07</div><div class="t" data-i18n="c.kar.t"></div><div class="d" data-i18n="c.kar.d"></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="modules.title"></h2>
+    <p class="lead" data-i18n="modules.lead"></p>
+    <div class="grid-mods">
+      <div class="mod"><div class="n" data-i18n="m1.n"></div><div class="t" data-i18n="m1.t"></div><div class="d" data-i18n="m1.d"></div></div>
+      <div class="mod"><div class="n" data-i18n="m2.n"></div><div class="t" data-i18n="m2.t"></div><div class="d" data-i18n="m2.d"></div></div>
+      <div class="mod"><div class="n" data-i18n="m3.n"></div><div class="t" data-i18n="m3.t"></div><div class="d" data-i18n="m3.d"></div></div>
+      <div class="mod"><div class="n" data-i18n="m4.n"></div><div class="t" data-i18n="m4.t"></div><div class="d" data-i18n="m4.d"></div></div>
+      <div class="mod"><div class="n" data-i18n="m5.n"></div><div class="t" data-i18n="m5.t"></div><div class="d" data-i18n="m5.d"></div></div>
+    </div>
+  </section>
+
+  <section class="card" style="text-align:center;background:radial-gradient(circle at 50% 0%, rgba(124,140,255,.2), transparent 60%),linear-gradient(160deg,var(--card),var(--bg2));">
+    <h2 style="justify-content:center;" data-i18n="cta.title"></h2>
+    <p class="lead" style="max-width:560px;margin:0 auto 22px;" data-i18n="cta.sub"></p>
+    <button class="btn btn-p" id="startBtn2" data-i18n="hero.cta"></button>
+  </section>
+
+</div>
+
+<!-- ================= DEMOGRAPHICS ================= -->
+<div class="card hidden" id="startCard">
+  <h2 data-i18n="start.title"></h2>
+  <p class="lead" data-i18n="start.lead"></p>
+  <div class="grid-form" style="margin-top:18px;">
+    <div class="field"><label data-i18n="demo.age"></label><input type="number" id="age" min="14" max="99" placeholder="28"></div>
+    <div class="field"><label data-i18n="demo.gender"></label>
+      <select id="gender">
+        <option value="">—</option>
+        <option data-i18n="demo.g.f" value="Female"></option>
+        <option data-i18n="demo.g.m" value="Male"></option>
+        <option data-i18n="demo.g.o" value="Other"></option>
+      </select>
+    </div>
+    <div class="field"><label data-i18n="demo.edu"></label>
+      <select id="edu">
+        <option value="">—</option>
+        <option data-i18n="demo.e1" value="High school"></option>
+        <option data-i18n="demo.e2" value="Vocational"></option>
+        <option data-i18n="demo.e3" value="Incomplete higher"></option>
+        <option data-i18n="demo.e4" value="Bachelor/Master"></option>
+        <option data-i18n="demo.e5" value="PhD"></option>
+      </select>
+    </div>
+    <div class="field"><label data-i18n="demo.jobs"></label>
+      <select id="jobs"><option value="">—</option><option>1</option><option>2–3</option><option>4–5</option><option>6+</option></select>
+    </div>
+  </div>
+  <div class="notice" style="margin-top:18px;" data-i18n="start.ethics"></div>
+  <div class="actions">
+    <button class="btn btn-g" id="backToLanding" data-i18n="btn.back"></button>
+    <button class="btn btn-p" id="startTest" data-i18n="start.btn"></button>
+  </div>
+</div>
+
+<!-- ================= MODULE 1 ================= -->
+<div class="card hidden" id="mod1">
+  <span class="module-tag" data-i18n="mod1.tag"></span>
+  <h2 data-i18n="mod1.title"></h2>
+  <p class="lead" data-i18n="mod1.lead"></p>
+  <div id="sjtContainer"></div>
+  <div class="actions">
+    <button class="btn btn-g" id="sjtBack" data-i18n="btn.back"></button>
+    <button class="btn btn-p" id="sjtNext" data-i18n="btn.next"></button>
+  </div>
+  <div class="notice err" id="sjtNotice" style="display:none;"></div>
+</div>
+
+<!-- ================= MODULE 2 ================= -->
+<div class="card hidden" id="mod2">
+  <span class="module-tag" data-i18n="mod2.tag"></span>
+  <h2 data-i18n="mod2.title"></h2>
+  <p class="lead" data-i18n="mod2.lead"></p>
+  <div id="cogIntro">
+    <div class="rec" data-i18n="cog.rec1"></div>
+    <div class="rec" data-i18n="cog.rec2"></div>
+    <div class="rec" data-i18n="cog.rec3"></div>
+    <div class="actions"><button class="btn btn-p" id="cogStart" data-i18n="cog.btn"></button></div>
+  </div>
+  <div id="cogStage" class="hidden">
+    <div class="cog-stage" id="cogStageInner"></div>
+    <div class="cog-progress"><div class="f" id="cogProg"></div></div>
+  </div>
+</div>
+
+<!-- ================= MODULE 3 ================= -->
+<div class="card hidden" id="mod3">
+  <span class="module-tag" data-i18n="mod3.tag"></span>
+  <h2 data-i18n="mod3.title"></h2>
+  <p class="lead" data-i18n="mod3.lead"></p>
+  <div id="vignContainer"></div>
+  <div class="actions">
+    <button class="btn btn-g" id="vignBack" data-i18n="btn.back"></button>
+    <button class="btn btn-p" id="vignNext" data-i18n="btn.next"></button>
+  </div>
+  <div class="notice err" id="vignNotice" style="display:none;"></div>
+</div>
+
+<!-- ================= MODULE 4 ================= -->
+<div class="card hidden" id="mod4">
+  <span class="module-tag" data-i18n="mod4.tag"></span>
+  <h2 data-i18n="mod4.title"></h2>
+  <p class="lead" data-i18n="mod4.lead"></p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;font-size:.78rem;color:var(--muted);">
+    <span data-i18n="lik.l1"></span><span>·</span>
+    <span data-i18n="lik.l3"></span><span>·</span>
+    <span data-i18n="lik.l5"></span>
+  </div>
+  <div id="likContainer"></div>
+  <div class="actions">
+    <button class="btn btn-g" id="likBack" data-i18n="btn.back"></button>
+    <button class="btn btn-p" id="likNext" data-i18n="btn.next"></button>
+  </div>
+  <div class="notice err" id="likNotice" style="display:none;"></div>
+</div>
+
+<!-- ================= MODULE 5 ================= -->
+<div class="card hidden" id="mod5">
+  <span class="module-tag" data-i18n="mod5.tag"></span>
+  <h2 data-i18n="mod5.title"></h2>
+  <p class="lead" data-i18n="mod5.lead"></p>
+  <div class="field" style="margin-bottom:20px;"><label data-i18n="ref.q1"></label><textarea id="ref1"></textarea></div>
+  <div class="field" style="margin-bottom:20px;"><label data-i18n="ref.q2"></label><textarea id="ref2"></textarea></div>
+  <div class="field" style="margin-bottom:20px;"><label data-i18n="ref.q3"></label><textarea id="ref3"></textarea></div>
+  <div class="actions">
+    <button class="btn btn-g" id="refBack" data-i18n="btn.back"></button>
+    <button class="btn btn-p" id="refFinish" data-i18n="ref.finish"></button>
+  </div>
+</div>
+
+<!-- ================= REPORT ================= -->
+<div id="report" class="report">
+  <div class="score-hero">
+    <div class="donut">
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        <circle cx="90" cy="90" r="76" stroke="rgba(255,255,255,.08)" stroke-width="16" fill="none"/>
+        <circle id="donutArc" cx="90" cy="90" r="76" stroke="url(#g1)" stroke-width="16" fill="none" stroke-linecap="round" stroke-dasharray="477.5" stroke-dashoffset="477.5"/>
+        <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7c8cff"/><stop offset="100%" stop-color="#b57cff"/></linearGradient></defs>
+      </svg>
+      <div class="center"><div class="val" id="totPct">0%</div><div class="lbl">SAC</div></div>
+    </div>
+    <div class="score-info">
+      <h2 data-i18n="rep.title"></h2>
+      <span class="lvl" id="lvlLabel">—</span>
+      <p id="summaryText"></p>
+    </div>
+  </div>
+
+  <div class="card"><h2 data-i18n="rep.sub"></h2><div id="subscales"></div></div>
+  <div class="card"><h2 data-i18n="rep.interp"></h2><div id="interpretation"></div></div>
+  <div class="card"><h2 data-i18n="rep.recs"></h2><div id="recommendations"></div></div>
+
+  <div class="submit-box">
+    <h3 data-i18n="sub.title"></h3>
+    <p data-i18n="sub.lead"></p>
+    <label class="consent" for="consentChk">
+      <input type="checkbox" id="consentChk">
+      <span class="box"></span>
+      <span class="txt" data-i18n="sub.consent"></span>
+    </label>
+    <div class="disclaimer" data-i18n="sub.disclaimer"></div>
+    <div class="field" style="margin-bottom:14px;">
+      <label data-i18n="sub.email"></label>
+      <input type="email" id="contactEmail" placeholder="you@example.com">
+    </div>
+    <div class="actions" style="margin-top:12px;">
+      <button class="btn btn-p" id="sendBtn" data-i18n="sub.send" disabled></button>
+      <button class="btn btn-g" id="mailBtn" data-i18n="sub.mailto"></button>
+    </div>
+    <div id="sendStatus" style="margin-top:14px;"></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-g" id="restartBtn" data-i18n="btn.restart"></button>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="brand">SAC PROJECT · Social Adaptation Capital</div>
+  <p style="margin:8px 0;">
+    <a href="mailto:sacialproject@gmail.com">sacialproject@gmail.com</a>
+    · <a href="https://github.com/sacproject" target="_blank" rel="noopener">github.com/sacproject</a>
+  </p>
+  <p style="margin-top:14px;font-size:.75rem;opacity:.75;max-width:640px;margin-left:auto;margin-right:auto;" data-i18n="footer.license"></p>
+</footer>
+
+</div>
+
+<script>
+/* =============================================================
+   CONFIG · SAC PROJECT
+   ============================================================= */
+const CONFIG = {
+  email: "sacialproject@gmail.com",
+  labName: "SAC PROJECT",
+  version: "SAC-CS v2.0"
+};
+
+/* =============================================================
+   TEXTS · RU / EN
+   ============================================================= */
+const TEXTS = {
+  ru:{
+    "hero.title":"Капитал, который остаётся при смене профессии",
+    "hero.sub":"SAC PROJECT — открытая теория и двуязычный инструмент диагностики метанавыков адаптации. 7 компонентов, 5 модулей, ~25 минут.",
+    "hero.cta":"Пройти диагностику →",
+    "hero.more":"Узнать теорию",
+    "hero.s1":"компонентов","hero.s2":"модулей","hero.s3":"минут","hero.s4":"языка",
+    "about.title":"Что такое SAC PROJECT",
+    "about.lead":"Мы объясняем, как любой трудовой или жизненный опыт конвертируется в переносимые метанавыки через рефлексию. Модель описывает 7 компонентов адаптивного капитала, 8 механизмов и практический протокол «3Д».",
+    "c.kog.t":"Когнитивный","c.kog.d":"Анализ среды, гибкость мышления.",
+    "c.emo.t":"Эмоциональный","c.emo.d":"Саморегуляция, эмпатия, устойчивость.",
+    "c.kom.t":"Коммуникативный","c.kom.d":"Переговоры, границы, команда.",
+    "c.vol.t":"Волевой","c.vol.d":"Дисциплина, терпение, завершение.",
+    "c.etp.t":"Этико-правовой","c.etp.d":"Справедливость, права, солидарность.",
+    "c.est.t":"Эстетический","c.est.d":"Чувство формы и качества.",
+    "c.kar.t":"Карьерный","c.kar.d":"Обучаемость, адаптивность, рефлексия.",
+    "modules.title":"5 модулей теста",
+    "modules.lead":"Мультимодальная батарея: поведенческие сценарии, когнитивные тесты, эмоциональные виньетки, самоотчёт и рефлексия.",
+    "m1.n":"Модуль 1","m1.t":"Ситуационные задачи","m1.d":"12 сценариев · 7 мин",
+    "m2.n":"Модуль 2","m2.t":"Когнитивные тесты","m2.d":"3 мини-теста · 6 мин",
+    "m3.n":"Модуль 3","m3.t":"Виньетки","m3.d":"6 сценариев · 4 мин",
+    "m4.n":"Модуль 4","m4.t":"Самоотчёт","m4.d":"21 пункт · 4 мин",
+    "m5.n":"Модуль 5","m5.t":"Рефлексия","m5.d":"3 вопроса · 3 мин",
+    "cta.title":"Узнайте свой профиль за 25 минут",
+    "cta.sub":"Бесплатно. Анонимно. Без регистрации. Результат — персональный отчёт с ресурсами и зонами роста.",
+    "start.title":"Перед началом",
+    "start.lead":"Отвечайте честно, работайте в удобном темпе. В когнитивных тестах важны точность и скорость. Результат — карта ваших ресурсов, а не оценка личности.",
+    "demo.age":"Возраст","demo.gender":"Пол","demo.edu":"Образование","demo.jobs":"Сфер опыта",
+    "demo.g.f":"Женский","demo.g.m":"Мужской","demo.g.o":"Другое",
+    "demo.e1":"Среднее","demo.e2":"Среднее специальное","demo.e3":"Неоконченное высшее","demo.e4":"Высшее","demo.e5":"Учёная степень",
+    "start.ethics":"<b>Этика.</b> Данные анонимны. Результаты передаются в лабораторию только с вашего согласия в конце теста.",
+    "start.btn":"Начать тест →",
+    "btn.back":"← Назад","btn.next":"Далее →","btn.restart":"Пройти заново",
+    "mod1.tag":"Модуль 1 / 5","mod1.title":"Ситуационные задачи",
+    "mod1.lead":"Представьте себя в каждой ситуации. Выберите вариант, наиболее вероятно отражающий ваше поведение.",
+    "mod2.tag":"Модуль 2 / 5","mod2.title":"Когнитивные микро-тесты",
+    "mod2.lead":"Три коротких теста: гибкость, переключаемость, рабочая память. Время реакции засекается.",
+    "cog.rec1":"<b>Тест 1. Переключение правил.</b> Правило меняется: то «цвет», то «форма».",
+    "cog.rec2":"<b>Тест 2. Последовательности.</b> Выберите элемент, продолжающий логику.",
+    "cog.rec3":"<b>Тест 3. Рабочая память.</b> Введите последовательность цифр в обратном порядке.",
+    "cog.btn":"Начать тесты →",
+    "mod3.tag":"Модуль 3 / 5","mod3.title":"Эмоциональные виньетки",
+    "mod3.lead":"Выберите реакцию, наиболее близкую вам. Оценивается регуляция и эмпатия.",
+    "mod4.tag":"Модуль 4 / 5","mod4.title":"Шкала самоотчёта",
+    "mod4.lead":"Оцените, насколько утверждение описывает вас за последние 6–12 месяцев.",
+    "lik.l1":"1 — совсем не про меня","lik.l3":"3 — иногда","lik.l5":"5 — полностью про меня",
+    "mod5.tag":"Модуль 5 / 5","mod5.title":"Рефлексивный блок",
+    "mod5.lead":"Три открытых вопроса. Отвечайте свободно — войдут в отчёт как качественный анализ.",
+    "ref.q1":"1. Опишите ситуацию адаптации. Что помогло?",
+    "ref.q2":"2. Ваш главный ресурс в незнакомой среде? Пример.",
+    "ref.q3":"3. Что труднее всего? Что хотите развить?",
+    "ref.finish":"Получить отчёт →",
+    "rep.title":"Ваш профиль САК",
+    "rep.sub":"Профиль по семи компонентам",
+    "rep.interp":"Интерпретация",
+    "rep.recs":"Рекомендации · «3Д»",
+    "level.low":"Низкий","level.mid":"Средний","level.good":"Высокий",
+    "sub.title":"Передача результатов в SAC PROJECT",
+    "sub.lead":"Если хотите поддержать исследование, анонимно передайте результаты в нашу научно-социальную лабораторию. Данные используются только в обобщённом виде.",
+    "sub.consent":"<b>Я согласен(а)</b> передать анонимные результаты теста (демография, ответы, баллы, рефлексия) в научно-социальную лабораторию <b>SAC PROJECT</b>. Я понимаю, что могу отозвать согласие, не отправляя форму.",
+    "sub.disclaimer":"<b>Дисклеймер.</b> Тест не является медицинским или клиническим и не заменяет консультацию специалиста. Персональные данные (имя, телефон, адрес) не собираются. Email указывается добровольно только для обратной связи.",
+    "sub.email":"Email для обратной связи (необязательно)",
+    "sub.send":"Отправить результаты",
+    "sub.mailto":"Через почтовый клиент",
+    "sub.wait":"Отправка…",
+    "sub.ok":"✓ Спасибо! Результаты переданы в SAC PROJECT.",
+    "sub.err":"Не удалось отправить. Используйте «Через почтовый клиент».",
+    "sub.needConsent":"Поставьте галочку согласия.",
+    "footer.license":"© 2026 SAC PROJECT · Лицензия CC BY-NC-SA 4.0 · Коммерческое использование запрещено без письменного разрешения автора. При использовании обязательна ссылка на sacialproject@gmail.com."
+  },
+  en:{
+    "hero.title":"The capital that stays with you when careers change",
+    "hero.sub":"SAC PROJECT — open theory and bilingual assessment of adaptation meta-skills. 7 components, 5 modules, ~25 minutes.",
+    "hero.cta":"Take the assessment →",
+    "hero.more":"Learn the theory",
+    "hero.s1":"components","hero.s2":"modules","hero.s3":"minutes","hero.s4":"languages",
+    "about.title":"What is SAC PROJECT",
+    "about.lead":"We explain how any work or life experience converts into transferable meta-skills through reflection. The model describes 7 components of adaptive capital, 8 mechanisms, and the practical \"3D\" protocol.",
+    "c.kog.t":"Cognitive","c.kog.d":"Environment analysis, flexibility.",
+    "c.emo.t":"Emotional","c.emo.d":"Self-regulation, empathy, resilience.",
+    "c.kom.t":"Communicative","c.kom.d":"Negotiation, boundaries, teamwork.",
+    "c.vol.t":"Volitional","c.vol.d":"Discipline, patience, follow-through.",
+    "c.etp.t":"Ethico-legal","c.etp.d":"Justice, rights, solidarity.",
+    "c.est.t":"Aesthetic","c.est.d":"Sense of form and quality.",
+    "c.kar.t":"Career","c.kar.d":"Learnability, adaptability, reflection.",
+    "modules.title":"5 assessment modules",
+    "modules.lead":"Multimodal battery: behavioral scenarios, cognitive tests, emotional vignettes, self-report, and reflection.",
+    "m1.n":"Module 1","m1.t":"Situational Judgment","m1.d":"12 scenarios · 7 min",
+    "m2.n":"Module 2","m2.t":"Cognitive Tests","m2.d":"3 mini-tests · 6 min",
+    "m3.n":"Module 3","m3.t":"Vignettes","m3.d":"6 scenarios · 4 min",
+    "m4.n":"Module 4","m4.t":"Self-Report","m4.d":"21 items · 4 min",
+    "m5.n":"Module 5","m5.t":"Reflection","m5.d":"3 questions · 3 min",
+    "cta.title":"Discover your profile in 25 minutes",
+    "cta.sub":"Free. Anonymous. No registration. Result — a personal report with resources and growth areas.",
+    "start.title":"Before you begin",
+    "start.lead":"Answer honestly, work at a comfortable pace. In cognitive tests, both accuracy and speed matter. The result is a map of your resources, not a judgment.",
+    "demo.age":"Age","demo.gender":"Gender","demo.edu":"Education","demo.jobs":"Fields of experience",
+    "demo.g.f":"Female","demo.g.m":"Male","demo.g.o":"Other",
+    "demo.e1":"High school","demo.e2":"Vocational","demo.e3":"Incomplete higher","demo.e4":"Bachelor/Master","demo.e5":"PhD",
+    "start.ethics":"<b>Ethics.</b> Data is anonymous. Results are transferred to the lab only with your consent at the end.",
+    "start.btn":"Start the test →",
+    "btn.back":"← Back","btn.next":"Next →","btn.restart":"Start over",
+    "mod1.tag":"Module 1 / 5","mod1.title":"Situational Judgment",
+    "mod1.lead":"Imagine yourself in each situation. Choose the option most likely reflecting your behavior.",
+    "mod2.tag":"Module 2 / 5","mod2.title":"Cognitive micro-tests",
+    "mod2.lead":"Three short tests: flexibility, set-shifting, working memory. Reaction time is recorded.",
+    "cog.rec1":"<b>Test 1. Rule Switching.</b> Rule alternates: \"color\" or \"shape\".",
+    "cog.rec2":"<b>Test 2. Sequences.</b> Choose the element that continues the logic.",
+    "cog.rec3":"<b>Test 3. Working Memory.</b> Enter digits in reverse order.",
+    "cog.btn":"Start tests →",
+    "mod3.tag":"Module 3 / 5","mod3.title":"Emotional vignettes",
+    "mod3.lead":"Choose the reaction closest to you. We assess regulation and empathy.",
+    "mod4.tag":"Module 4 / 5","mod4.title":"Self-report scale",
+    "mod4.lead":"Rate how well each statement describes you over the past 6–12 months.",
+    "lik.l1":"1 — not at all like me","lik.l3":"3 — sometimes","lik.l5":"5 — completely like me",
+    "mod5.tag":"Module 5 / 5","mod5.title":"Reflective block",
+    "mod5.lead":"Three open questions. Answer freely — these go into your report as qualitative analysis.",
+    "ref.q1":"1. Describe a situation of adaptation. What helped?",
+    "ref.q2":"2. Your main resource in an unfamiliar environment? Example.",
+    "ref.q3":"3. What is hardest? What would you like to develop?",
+    "ref.finish":"Get report →",
+    "rep.title":"Your SAC profile",
+    "rep.sub":"Profile across 7 components",
+    "rep.interp":"Interpretation",
+    "rep.recs":"Recommendations · \"3D\"",
+    "level.low":"Low","level.mid":"Medium","level.good":"High",
+    "sub.title":"Transfer results to SAC PROJECT",
+    "sub.lead":"If you'd like to support the research, anonymously transfer your results to our scientific-social laboratory. Data is used only in aggregate.",
+    "sub.consent":"<b>I agree</b> to transfer anonymous test results (demographics, answers, scores, reflections) to the <b>SAC PROJECT</b> laboratory. I understand I can withdraw consent by not submitting.",
+    "sub.disclaimer":"<b>Disclaimer.</b> This test is not a medical or clinical instrument and does not replace professional consultation. Personal data (name, phone, address) is not collected. Email is provided voluntarily for feedback only.",
+    "sub.email":"Email for feedback (optional)",
+    "sub.send":"Send results",
+    "sub.mailto":"Via email client",
+    "sub.wait":"Sending…",
+    "sub.ok":"✓ Thank you! Results transferred to SAC PROJECT.",
+    "sub.err":"Failed to send. Please use \"Via email client\".",
+    "sub.needConsent":"Check the consent box.",
+    "footer.license":"© 2026 SAC PROJECT · License CC BY-NC-SA 4.0 · Commercial use prohibited without the author's written permission. Attribution to sacialproject@gmail.com required."
+  }
+};
+
+/* =============================================================
+   CONTENT
+   ============================================================= */
+const SCALES = {
+  kog:{ru:"Когнитивный",en:"Cognitive",ruD:"Анализ среды, гибкость.",enD:"Environment analysis, flexibility."},
+  emo:{ru:"Эмоциональный",en:"Emotional",ruD:"Саморегуляция, эмпатия.",enD:"Self-regulation, empathy."},
+  kom:{ru:"Коммуникативный",en:"Communicative",ruD:"Переговоры, границы.",enD:"Negotiation, boundaries."},
+  vol:{ru:"Волевой",en:"Volitional",ruD:"Дисциплина, терпение.",enD:"Discipline, patience."},
+  etp:{ru:"Этико-правовой",en:"Ethico-legal",ruD:"Справедливость, права.",enD:"Justice, rights."},
+  est:{ru:"Эстетический",en:"Aesthetic",ruD:"Чувство формы, качества.",enD:"Sense of form, quality."},
+  kar:{ru:"Карьерный",en:"Career",ruD:"Обучаемость, рефлексия.",enD:"Learnability, reflection."}
+};
+
+const SJT = [
+  {id:"sjt1",scale:"kog",
+   s:{ru:"Вы вышли на новую работу. В первый день коллеги общаются намёками, которые вы не понимаете.",en:"You started a new job. On day one, colleagues speak in hints you don't understand."},
+   o:[{t:{ru:"Молча наблюдать, запоминать, к вечеру поискать смысл.",en:"Silently observe, note, look up meaning later."},s:3},
+      {t:{ru:"Сразу громко спросить: «Что вы имеете в виду?»",en:"Ask loudly: \"What do you mean?\""},s:1},
+      {t:{ru:"Сделать вид, что всё понимаете.",en:"Pretend you understand."},s:0},
+      {t:{ru:"Найти дружелюбного коллегу и спросить наедине.",en:"Find a friendly colleague and ask privately."},s:2}]},
+  {id:"sjt2",scale:"emo",
+   s:{ru:"Вы допустили ошибку, которая стоила компании денег. Руководитель кричит при всех.",en:"You made a mistake costing the company money. Your manager yells in front of everyone."},
+   o:[{t:{ru:"Сохранить спокойствие, предложить план исправления.",en:"Stay calm, propose a remediation plan."},s:3},
+      {t:{ru:"Расплакаться или накричать в ответ.",en:"Burst into tears or yell back."},s:0},
+      {t:{ru:"Молча выслушать, потом обсудить наедине.",en:"Listen silently, discuss privately later."},s:2},
+      {t:{ru:"Уйти в себя, переживать неделю.",en:"Withdraw and ruminate for a week."},s:1}]},
+  {id:"sjt3",scale:"kom",
+   s:{ru:"Клиент требует вернуть деньги за услугу по договору, угрожает жалобами.",en:"A client demands a refund for a contractual service, threatens complaints."},
+   o:[{t:{ru:"Сохранить тон, уточнить претензию, предложить варианты.",en:"Keep tone, clarify complaint, offer options."},s:3},
+      {t:{ru:"Сразу вернуть деньги.",en:"Refund immediately."},s:1},
+      {t:{ru:"Начать спорить.",en:"Start arguing."},s:0},
+      {t:{ru:"Позвать руководителя.",en:"Call the manager."},s:2}]},
+  {id:"sjt4",scale:"vol",
+   s:{ru:"Вам поручили монотонную задачу на 3 недели.",en:"You've been assigned a monotonous 3-week task."},
+   o:[{t:{ru:"Разбить на этапы, вести учёт прогресса, микроцели.",en:"Break into stages, track progress, micro-goals."},s:3},
+      {t:{ru:"Делать в последний момент.",en:"Do it at the last moment."},s:1},
+      {t:{ru:"Попросить другую задачу.",en:"Ask for another task."},s:2},
+      {t:{ru:"Откладывать, пропускать сроки.",en:"Procrastinate, miss deadlines."},s:0}]},
+  {id:"sjt5",scale:"etp",
+   s:{ru:"Третий месяц задерживают зарплату. Коллеги боятся идти к начальству.",en:"Salary delayed for three months. Colleagues are afraid."},
+   o:[{t:{ru:"Изучить договор и ТК, собрать коллег, требовать вместе.",en:"Study contract and law, gather colleagues, demand together."},s:3},
+      {t:{ru:"Уволиться молча.",en:"Quit silently."},s:1},
+      {t:{ru:"Пожаловаться в соцсетях.",en:"Complain on social media."},s:1},
+      {t:{ru:"Терпеть, надеясь на лучшее.",en:"Endure, hope for the best."},s:0}]},
+  {id:"sjt6",scale:"est",
+   s:{ru:"Презентация проекта: рабочий, но некрасивый, или красивый, но менее функциональный.",en:"Project presentation: functional but ugly, or beautiful but less functional."},
+   o:[{t:{ru:"Найти баланс: доработать оба.",en:"Find a balance: improve both."},s:3},
+      {t:{ru:"Выбрать функциональный.",en:"Choose functional."},s:1},
+      {t:{ru:"Выбрать красивый.",en:"Choose beautiful."},s:1},
+      {t:{ru:"Отдать решение руководителю.",en:"Let the manager decide."},s:0}]},
+  {id:"sjt7",scale:"kar",
+   s:{ru:"Вашу профессию через 3 года заменит автоматизация.",en:"Your profession will be automated in 3 years."},
+   o:[{t:{ru:"Изучать смежные навыки, уточнять у руководства.",en:"Learn adjacent skills, clarify with management."},s:3},
+      {t:{ru:"Игнорировать.",en:"Ignore."},s:0},
+      {t:{ru:"Срочно уйти в новую сферу.",en:"Urgently switch fields."},s:1},
+      {t:{ru:"Обсудить с коллегами, составить план Б.",en:"Discuss with colleagues, make a plan B."},s:2}]},
+  {id:"sjt8",scale:"kog",
+   s:{ru:"Задача без инструкции. Руководитель в отпуске.",en:"Task without instructions. Manager on vacation."},
+   o:[{t:{ru:"Разобрать похожие задачи, начать с малого.",en:"Study similar tasks, start small."},s:3},
+      {t:{ru:"Ждать руководителя.",en:"Wait for the manager."},s:0},
+      {t:{ru:"Спросить занятого коллегу.",en:"Ask a busy colleague."},s:1},
+      {t:{ru:"Сделать наугад.",en:"Do it randomly."},s:1}]},
+  {id:"sjt9",scale:"emo",
+   s:{ru:"Переезд в новый город. Первые две недели всё не по плану.",en:"Moved to a new city. First two weeks everything goes wrong."},
+   o:[{t:{ru:"Признать, что адаптация требует времени, снизить требования.",en:"Acknowledge adaptation takes time, lower self-demands."},s:3},
+      {t:{ru:"Ругать себя.",en:"Blame yourself."},s:0},
+      {t:{ru:"Заморозиться.",en:"Freeze."},s:1},
+      {t:{ru:"Обратиться за поддержкой.",en:"Reach out for support."},s:2}]},
+  {id:"sjt10",scale:"kom",
+   s:{ru:"Друг просит денег. Вы не хотите давать.",en:"A friend asks to borrow money. You don't want to lend."},
+   o:[{t:{ru:"Спокойно сказать «нет», объяснить, предложить другое.",en:"Calmly say \"no\", explain, offer other help."},s:3},
+      {t:{ru:"Дать, чтобы не обидеть.",en:"Lend to avoid offense."},s:1},
+      {t:{ru:"Сказать резко «нет».",en:"Say sharply \"no\"."},s:1},
+      {t:{ru:"Промолчать, избегать.",en:"Say nothing, avoid."},s:0}]},
+  {id:"sjt11",scale:"vol",
+   s:{ru:"Освоение нового навыка. Через 2 недели прогресса нет.",en:"Learning a new skill. After 2 weeks, no progress."},
+   o:[{t:{ru:"Разбить на мелкие шаги, найти сообщество.",en:"Break into small steps, find a community."},s:3},
+      {t:{ru:"Бросить.",en:"Quit."},s:0},
+      {t:{ru:"Заставить через силу.",en:"Force through."},s:1},
+      {t:{ru:"Пауза и новый план.",en:"Pause and a new plan."},s:2}]},
+  {id:"sjt12",scale:"kar",
+   s:{ru:"Повышение, но навыков нет. Чувствуете себя «самозванцем».",en:"Promoted, but lack skills. Feel like an \"impostor\"."},
+   o:[{t:{ru:"Признать обучение частью роли, найти наставника.",en:"Accept learning as part of the role, find a mentor."},s:3},
+      {t:{ru:"Скрывать неуверенность.",en:"Hide insecurity."},s:0},
+      {t:{ru:"Отказаться от повышения.",en:"Decline the promotion."},s:1},
+      {t:{ru:"Признать вслух, просить фидбэк.",en:"Admit openly, ask for feedback."},s:2}]}
+];
+
+const VIGN = [
+  {id:"v1",scale:"emo",
+   t:{ru:"Коллега публично раскритиковал вашу работу.",en:"A colleague publicly criticized your work."},
+   o:[{t:{ru:"Поблагодарить, уточнить, обдумать позже.",en:"Thank, clarify, reflect later."},s:3},
+      {t:{ru:"Обидеться.",en:"Take offense."},s:0},
+      {t:{ru:"Согласиться, что вы неудачник.",en:"Agree you're a failure."},s:0},
+      {t:{ru:"Спокойно спросить, что улучшить.",en:"Calmly ask what to improve."},s:2}]},
+  {id:"v2",scale:"emo",
+   t:{ru:"Отказ после собеседования, к которому долго готовились.",en:"Rejection after an interview you prepared for."},
+   o:[{t:{ru:"Расстроиться, разобрать причины, запросить фидбэк.",en:"Be upset, analyze, request feedback."},s:3},
+      {t:{ru:"Решить, что вы никому не нужны.",en:"Decide you're not needed."},s:0},
+      {t:{ru:"Подать 10 заявок без анализа.",en:"Send 10 more without analysis."},s:1},
+      {t:{ru:"Обсудить с близким, выписать уроки.",en:"Discuss with a loved one, write lessons."},s:2}]},
+  {id:"v3",scale:"kom",
+   t:{ru:"В команде конфликт, страдает проект.",en:"Team conflict, project suffers."},
+   o:[{t:{ru:"Поговорить с каждым, найти точки соприкосновения.",en:"Talk to each, find common ground."},s:3},
+      {t:{ru:"Игнорировать.",en:"Ignore."},s:0},
+      {t:{ru:"Пожаловаться руководителю.",en:"Complain to the manager."},s:1},
+      {t:{ru:"Предложить общую встречу.",en:"Propose a joint meeting."},s:2}]},
+  {id:"v4",scale:"etp",
+   t:{ru:"С новым сотрудником грубо обращаются, но это не ваша зона.",en:"A new employee is treated rudely, but it's not your area."},
+   o:[{t:{ru:"Поддержать лично, при системности — обсудить с HR.",en:"Support personally, if systemic — discuss with HR."},s:3},
+      {t:{ru:"Не вмешиваться.",en:"Don't intervene."},s:0},
+      {t:{ru:"Публично устроить скандал.",en:"Publicly create a scene."},s:1},
+      {t:{ru:"Поговорить с обидчиком наедине.",en:"Talk to the offender privately."},s:2}]},
+  {id:"v5",scale:"kar",
+   t:{ru:"Задача кажется бессмысленной и не развивает.",en:"Task seems meaningless and doesn't develop you."},
+   o:[{t:{ru:"Выполнить, искать смысл, обсудить развитие.",en:"Complete, look for meaning, discuss development."},s:3},
+      {t:{ru:"Саботировать.",en:"Sabotage."},s:0},
+      {t:{ru:"Отказаться.",en:"Refuse."},s:1},
+      {t:{ru:"Сделать быстро, попросить другую.",en:"Do it quickly, ask for another."},s:2}]},
+  {id:"v6",scale:"est",
+   t:{ru:"Качество страдает из-за сжатых сроков.",en:"Quality suffers due to tight deadlines."},
+   o:[{t:{ru:"Обозначить риски, предложить компромисс.",en:"Flag risks, propose a compromise."},s:3},
+      {t:{ru:"Сдать как есть.",en:"Submit as is."},s:0},
+      {t:{ru:"Работать ночами.",en:"Work nights."},s:1},
+      {t:{ru:"Обсудить приоритеты с заказчиком.",en:"Discuss priorities with the client."},s:2}]}
+];
+
+const LIK = [
+  {id:"l1",scale:"kog",rev:false,ru:"Быстро схватываю негласные правила новой среды.",en:"I quickly grasp unspoken rules of a new environment."},
+  {id:"l2",scale:"kog",rev:false,ru:"Когда план рушится, умею перестроиться.",en:"When the plan collapses, I can readjust."},
+  {id:"l3",scale:"kog",rev:true,ru:"Трудно анализировать свои ошибки в адаптации.",en:"Hard to analyze my adaptation mistakes."},
+  {id:"l4",scale:"emo",rev:false,ru:"Сохраняю спокойствие в стрессе.",en:"I stay calm under stress."},
+  {id:"l5",scale:"emo",rev:false,ru:"Понимаю, что вызвало эмоцию.",en:"I understand what triggered my emotion."},
+  {id:"l6",scale:"emo",rev:true,ru:"Критика надолго выбивает из колеи.",en:"Criticism knocks me off balance."},
+  {id:"l7",scale:"kom",rev:false,ru:"Легко нахожу общий язык с новыми людьми.",en:"I easily find common ground."},
+  {id:"l8",scale:"kom",rev:false,ru:"Умею ясно обозначать границы.",en:"I can clearly state boundaries."},
+  {id:"l9",scale:"kom",rev:true,ru:"Сложно отстаивать свою точку зрения.",en:"Hard to defend my point of view."},
+  {id:"l10",scale:"vol",rev:false,ru:"Довожу начатое до конца.",en:"I finish what I start."},
+  {id:"l11",scale:"vol",rev:false,ru:"Умею заставлять себя делать нужное.",en:"I can force myself to do what's needed."},
+  {id:"l12",scale:"vol",rev:true,ru:"Быстро сдаюсь после первой неудачи.",en:"I give up quickly after first failure."},
+  {id:"l13",scale:"etp",rev:false,ru:"Знаю, куда обратиться при нарушении прав.",en:"I know where to turn if rights are violated."},
+  {id:"l14",scale:"etp",rev:false,ru:"Готов объединяться с другими.",en:"I'm ready to unite with others."},
+  {id:"l15",scale:"etp",rev:true,ru:"Предпочитаю не вмешиваться.",en:"I prefer not to intervene."},
+  {id:"l16",scale:"est",rev:false,ru:"Замечаю красоту и гармонию вокруг.",en:"I notice beauty and harmony."},
+  {id:"l17",scale:"est",rev:false,ru:"Важно, чтобы результат был и полезным, и красивым.",en:"Result should be useful and beautiful."},
+  {id:"l18",scale:"est",rev:true,ru:"Редко обращаю внимание на эстетику.",en:"I rarely notice aesthetics."},
+  {id:"l19",scale:"kar",rev:false,ru:"Умею анализировать опыт.",en:"I can analyze experience."},
+  {id:"l20",scale:"kar",rev:false,ru:"Смена профессии — возможность.",en:"Career change is an opportunity."},
+  {id:"l21",scale:"kar",rev:true,ru:"Избегаю ситуаций, где надо осваивать новое.",en:"I avoid learning new things."}
+];
+
+/* =============================================================
+   STATE
+   ============================================================= */
+const ST = {
+  lang:"ru",
+  sjt:{},lik:{},vign:{},
+  cog:{switchAcc:0,switchRT:0,patternScore:0,memScore:0},
+  ref:{r1:"",r2:"",r3:""},
+  demo:{},
+  results:null
+};
+
+/* =============================================================
+   UTILS
+   ============================================================= */
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove("hidden");
+const hide = id => $(id).classList.add("hidden");
+const upd = (s,t)=> $("pbar").style.width = (s/t*100)+"%";
+const T = k => TEXTS[ST.lang][k] || k;
+const tr = o => o[ST.lang] || o.ru;
+const randInt = n => Math.floor(Math.random()*n);
+
+function applyLang(){
+  document.documentElement.lang = ST.lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const v = TEXTS[ST.lang][el.dataset.i18n];
+    if(v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll("[data-lang-btn]").forEach(b=>b.classList.toggle("on",b.dataset.langBtn===ST.lang));
+  renderSJT(); renderVign(); renderLik();
+  if(ST.results) renderReport();
+}
+function setLang(l){
+  ST.lang = l;
+  try{localStorage.setItem("sac_lang",l);}catch(e){}
+  applyLang();
+}
+
+/* =============================================================
+   RENDER
+   ============================================================= */
+function renderSJT(){
+  const c = $("sjtContainer"); if(!c) return;
+  c.innerHTML = "";
+  SJT.forEach((it,i)=>{
+    const blk = document.createElement("div");
+    blk.style.marginBottom = "26px";
+    const lbl = ST.lang==="ru" ? `Сценарий ${i+1} из ${SJT.length}` : `Scenario ${i+1} of ${SJT.length}`;
+    blk.innerHTML = `
+      <div style="font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">${lbl}</div>
+      <div class="sjt-scenario">${tr(it.s)}</div>
+      <div class="sjt-opts">
+        ${it.o.map((o,j)=>{
+          const sel = ST.sjt[it.id]===j ? "sel" : "";
+          const letters = ST.lang==="ru" ? "АБВГ" : "ABCD";
+          return `<div class="sjt-opt ${sel}" data-sjt="${it.id}" data-idx="${j}"><div class="letter">${letters[j]}</div><div>${tr(o.t)}</div></div>`;
+        }).join("")}
+      </div>`;
+    c.appendChild(blk);
+  });
+}
+function renderVign(){
+  const c = $("vignContainer"); if(!c) return;
+  c.innerHTML = "";
+  VIGN.forEach((it,i)=>{
+    const blk = document.createElement("div");
+    blk.className = "vign";
+    const lbl = ST.lang==="ru" ? `Ситуация ${i+1} из ${VIGN.length}` : `Situation ${i+1} of ${VIGN.length}`;
+    blk.innerHTML = `
+      <div style="font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">${lbl}</div>
+      <div class="vtext">${tr(it.t)}</div>
+      <div class="vopts">
+        ${it.o.map((o,j)=>{
+          const sel = ST.vign[it.id]===j ? "sel" : "";
+          return `<div class="vopt ${sel}" data-vig="${it.id}" data-idx="${j}">${tr(o.t)}</div>`;
+        }).join("")}
+      </div>`;
+    c.appendChild(blk);
+  });
+}
+function renderLik(){
+  const c = $("likContainer"); if(!c) return;
+  c.innerHTML = "";
+  LIK.forEach((it,i)=>{
+    const blk = document.createElement("div");
+    blk.className = "q";
+    blk.innerHTML = `
+      <div class="num">${i+1}.</div>
+      <div>
+        <div class="txt">${ST.lang==="ru"?it.ru:it.en}</div>
+        <div class="lik">
+          ${[1,2,3,4,5].map(v=>{
+            const on = ST.lik[it.id]===v ? "on" : "";
+            return `<label class="${on}" data-lik="${it.id}" data-v="${v}">${v}</label>`;
+          }).join("")}
+        </div>
+      </div>`;
+    c.appendChild(blk);
+  });
+}
+
+/* =============================================================
+   CLICKS
+   ============================================================= */
+document.addEventListener("click", e=>{
+  const so = e.target.closest(".sjt-opt");
+  if(so){ ST.sjt[so.dataset.sjt]=+so.dataset.idx;
+    so.parentElement.querySelectorAll(".sjt-opt").forEach(x=>x.classList.remove("sel"));
+    so.classList.add("sel"); return; }
+  const vo = e.target.closest(".vopt");
+  if(vo){ ST.vign[vo.dataset.vig]=+vo.dataset.idx;
+    vo.parentElement.querySelectorAll(".vopt").forEach(x=>x.classList.remove("sel"));
+    vo.classList.add("sel"); return; }
+  const lk = e.target.closest(".lik label");
+  if(lk){ ST.lik[lk.dataset.lik]=+lk.dataset.v;
+    lk.parentElement.querySelectorAll("label").forEach(x=>x.classList.remove("on"));
+    lk.classList.add("on"); }
+});
+
+/* =============================================================
+   COGNITIVE TESTS
+   ============================================================= */
+const COLORS = [
+  {n:{ru:"красный",en:"red"},h:"#ef4444"},
+  {n:{ru:"синий",en:"blue"},h:"#3b82f6"},
+  {n:{ru:"зелёный",en:"green"},h:"#22c55e"},
+  {n:{ru:"жёлтый",en:"yellow"},h:"#eab308"}
+];
+const SHAPES = [
+  {id:"circle",ru:"круг",en:"circle"},
+  {id:"square",ru:"квадрат",en:"square"},
+  {id:"triangle",ru:"треугольник",en:"triangle"}
+];
+
+function startSwitchTest(done){
+  const TOTAL=16; let trial=0, correct=0, sumRT=0, t0=0;
+  const stage=$("cogStageInner");
+  function next(){
+    if(trial>=TOTAL){done({acc:correct/TOTAL,meanRT:sumRT/Math.max(1,TOTAL)});return;}
+    const rule = Math.floor(trial/4)%2===0 ? "color" : "shape";
+    const c = COLORS[randInt(COLORS.length)], s = SHAPES[randInt(SHAPES.length)];
+    const lbl = ST.lang==="ru"
+      ? `Правило: <b style="color:var(--accent)">${rule==="color"?"ЦВЕТ":"ФОРМА"}</b> · Осталось: ${TOTAL-trial}`
+      : `Rule: <b style="color:var(--accent)">${rule==="color"?"COLOR":"SHAPE"}</b> · Remaining: ${TOTAL-trial}`;
+    stage.innerHTML = `
+      <div class="cog-prompt">${lbl}</div>
+      <div class="cog-stim" style="background:${c.h};${s.id==="circle"?"border-radius:50%;":s.id==="square"?"border-radius:14px;":"clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:0;"}"></div>
+      <div class="cog-btns">
+        ${rule==="color"
+          ? COLORS.map(x=>`<button class="cog-btn" data-ans="${x.n.en}">${x.n[ST.lang]}</button>`).join("")
+          : SHAPES.map(x=>`<button class="cog-btn" data-ans="${x.id}">${x[ST.lang]}</button>`).join("")}
+      </div>
+      <div class="rt-fb" id="rtFb">…</div>`;
+    t0 = performance.now();
+    stage.querySelectorAll(".cog-btn").forEach(b=>{
+      b.onclick = ()=>{
+        const rt = performance.now()-t0; sumRT += rt;
+        const ans = b.dataset.ans;
+        const right = (rule==="color" && ans===c.n.en) || (rule==="shape" && ans===s.id);
+        if(right) correct++;
+        const fb = ST.lang==="ru" ? (right?`✓ верно · ${Math.round(rt)} мс`:`✗ ошибка · ${Math.round(rt)} мс`) : (right?`✓ correct · ${Math.round(rt)} ms`:`✗ error · ${Math.round(rt)} ms`);
+        $("rtFb").textContent = fb;
+        trial++; setTimeout(next, 320);
+      };
+    });
+  }
+  next();
+}
+
+const PATTERNS = [
+  {seq:["1","2","3"],next:"4",choices:["4","5","6","7"]},
+  {seq:["2","4","6"],next:"8",choices:["7","8","9","10"]},
+  {seq:["1","4","9"],next:"16",choices:["12","14","16","25"]},
+  {seq:["1","1","2"],next:"3",choices:["3","4","5","6"]}
+];
+function startPatternTest(done){
+  let i=0, correct=0;
+  const stage=$("cogStageInner");
+  function next(){
+    if(i>=PATTERNS.length){done({score:correct/PATTERNS.length});return;}
+    const p = PATTERNS[i];
+    const pr = ST.lang==="ru" ? "Какое значение продолжает последовательность?" : "Which value continues the sequence?";
+    const fb = ST.lang==="ru" ? "Выберите ответ" : "Choose an answer";
+    stage.innerHTML = `
+      <div class="cog-prompt">${pr}</div>
+      <div class="cog-seq">${p.seq.map(x=>`<span>${x}</span>`).join("")}<span style="color:var(--accent);border-bottom:3px solid var(--accent);min-width:40px;">?</span></div>
+      <div class="pattern-choices">${p.choices.map(ch=>`<div class="pattern-choice" data-p="${ch}">${ch}</div>`).join("")}</div>
+      <div class="rt-fb" id="rtFb">${fb}</div>`;
+    stage.querySelectorAll(".pattern-choice").forEach(el=>{
+      el.onclick = ()=>{
+        const right = el.dataset.p === p.next;
+        if(right) correct++;
+        $("rtFb").textContent = ST.lang==="ru" ? (right?"✓ верно":`✗ ответ: ${p.next}`) : (right?"✓ correct":`✗ answer: ${p.next}`);
+        i++; setTimeout(next, 700);
+      };
+    });
+  }
+  next();
+}
+
+function startMemoryTest(done){
+  const TOTAL=3; let round=0, correct=0;
+  const stage=$("cogStageInner");
+  function next(){
+    if(round>=TOTAL){done({score:correct/TOTAL});return;}
+    const len = 4+round;
+    const seq = Array.from({length:len},()=>randInt(10));
+    let idx = 0;
+    const pr = ST.lang==="ru" ? "Запомните цифры и введите в <b>обратном</b> порядке." : "Memorize digits and enter in <b>reverse</b> order.";
+    const rl = ST.lang==="ru" ? `Раунд ${round+1} из ${TOTAL}` : `Round ${round+1} of ${TOTAL}`;
+    stage.innerHTML = `
+      <div class="cog-prompt">${pr}</div>
+      <div class="cog-seq" id="memSeq" style="font-size:3rem;">—</div>
+      <div class="rt-fb" id="rtFb">${rl}</div>`;
+    const seqEl = $("memSeq");
+    const timer = setInterval(()=>{
+      if(idx>=seq.length){
+        clearInterval(timer);
+        const ip = ST.lang==="ru" ? "Введите через запятую" : "Enter, comma-separated";
+        const cb = ST.lang==="ru" ? "Проверить" : "Check";
+        stage.innerHTML = `
+          <div class="cog-prompt">${ip}</div>
+          <input type="text" id="memInput" placeholder="..." style="padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font-size:1.1rem;text-align:center;letter-spacing:.1em;width:100%;max-width:400px;font-family:inherit;">
+          <div class="cog-btns"><button class="cog-btn" id="memSubmit">${cb}</button></div>
+          <div class="rt-fb" id="rtFb"></div>`;
+        $("memSubmit").onclick = ()=>{
+          const val = $("memInput").value.split(/[,\s]+/).map(x=>x.trim()).filter(Boolean);
+          const exp = [...seq].reverse().map(String);
+          const ok = val.length===exp.length && val.every((v,k)=>v===exp[k]);
+          if(ok) correct++;
+          $("rtFb").textContent = ST.lang==="ru" ? (ok?"✓ верно":`✗ правильно: ${exp.join(", ")}`) : (ok?"✓ correct":`✗ correct: ${exp.join(", ")}`);
+          round++; setTimeout(next, 900);
+        };
+        return;
+      }
+      seqEl.textContent = seq[idx]; idx++;
+    }, 700);
+  }
+  next();
+}
+
+function runCognitiveTests(){
+  hide("cogIntro"); show("cogStage");
+  const stage = $("cogStageInner");
+  const btn = ST.lang==="ru" ? "Начать" : "Start";
+  const t1 = ST.lang==="ru" ? "Тест 1: Переключение правил" : "Test 1: Rule Switching";
+  const s1 = ST.lang==="ru" ? "Следите за правилом сверху." : "Follow the rule shown above.";
+  stage.innerHTML = `<div class="cog-prompt"><b>${t1}</b><br>${s1}</div><div class="cog-btns"><button class="cog-btn" id="go1">${btn}</button></div>`;
+  $("go1").onclick = ()=>{
+    $("cogProg").style.width = "0%";
+    startSwitchTest(r=>{
+      ST.cog.switchAcc = r.acc; ST.cog.switchRT = r.meanRT;
+      $("cogProg").style.width = "33%";
+      const t2 = ST.lang==="ru" ? "Тест 2: Последовательности" : "Test 2: Sequences";
+      const s2 = ST.lang==="ru" ? "Выберите элемент." : "Choose the element.";
+      stage.innerHTML = `<div class="cog-prompt"><b>${t2}</b><br>${s2}</div><div class="cog-btns"><button class="cog-btn" id="go2">${btn}</button></div>`;
+      $("go2").onclick = ()=>{
+        startPatternTest(r=>{
+          ST.cog.patternScore = r.score;
+          $("cogProg").style.width = "66%";
+          const t3 = ST.lang==="ru" ? "Тест 3: Рабочая память" : "Test 3: Working Memory";
+          const s3 = ST.lang==="ru" ? "Введите в обратном порядке." : "Enter in reverse order.";
+          stage.innerHTML = `<div class="cog-prompt"><b>${t3}</b><br>${s3}</div><div class="cog-btns"><button class="cog-btn" id="go3">${btn}</button></div>`;
+          $("go3").onclick = ()=>{
+            startMemoryTest(r=>{
+              ST.cog.memScore = r.score;
+              $("cogProg").style.width = "100%";
+              const dn = ST.lang==="ru" ? "✓ Готово." : "✓ Done.";
+              const nb = ST.lang==="ru" ? "Далее →" : "Next →";
+              stage.innerHTML = `<div class="cog-prompt">${dn}</div><div class="cog-btns"><button class="cog-btn" id="toMod3">${nb}</button></div>`;
+              $("toMod3").onclick = ()=>{ hide("mod2"); show("mod3"); window.scrollTo({top:0,behavior:"smooth"}); upd(3,5); };
+            });
+          };
+        });
+      };
+    });
+  };
+}
+
+/* =============================================================
+   NAVIGATION
+   ============================================================= */
+$("startBtn").onclick = ()=>{ hide("view-landing"); show("startCard"); window.scrollTo({top:0,behavior:"smooth"}); };
+$("startBtn2").onclick = ()=>{ hide("view-landing"); show("startCard"); window.scrollTo({top:0,behavior:"smooth"}); };
+$("backToLanding").onclick = ()=>{ hide("startCard"); show("view-landing"); upd(0,5); window.scrollTo({top:0,behavior:"smooth"}); };
+$("startTest").onclick = ()=>{
+  ST.demo = {age:$("age").value, gender:$("gender").value, edu:$("edu").value, jobs:$("jobs").value};
+  hide("startCard"); show("mod1"); upd(1,5);
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+
+$("sjtBack").onclick = ()=>{ hide("mod1"); show("startCard"); upd(0,5); window.scrollTo({top:0,behavior:"smooth"}); };
+$("sjtNext").onclick = ()=>{
+  if(Object.keys(ST.sjt).length < SJT.length){
+    const n = $("sjtNotice"); n.style.display = "block";
+    n.textContent = ST.lang==="ru"
+      ? `Ответьте на все ${SJT.length}. Пропущено: ${SJT.length-Object.keys(ST.sjt).length}.`
+      : `Answer all ${SJT.length}. Missing: ${SJT.length-Object.keys(ST.sjt).length}.`;
+    return;
+  }
+  hide("mod1"); show("mod2"); upd(2,5); window.scrollTo({top:0,behavior:"smooth"});
+};
+$("cogStart").onclick = runCognitiveTests;
+
+$("vignBack").onclick = ()=>{ hide("mod3"); show("mod2"); upd(2,5); window.scrollTo({top:0,behavior:"smooth"}); };
+$("vignNext").onclick = ()=>{
+  if(Object.keys(ST.vign).length < VIGN.length){
+    const n = $("vignNotice"); n.style.display = "block";
+    n.textContent = ST.lang==="ru" ? `Ответьте на все ${VIGN.length}.` : `Answer all ${VIGN.length}.`;
+    return;
+  }
+  hide("mod3"); show("mod4"); upd(4,5); window.scrollTo({top:0,behavior:"smooth"});
+};
+$("likBack").onclick = ()=>{ hide("mod4"); show("mod3"); upd(3,5); window.scrollTo({top:0,behavior:"smooth"}); };
+$("likNext").onclick = ()=>{
+  if(Object.keys(ST.lik).length < LIK.length){
+    const n = $("likNotice"); n.style.display = "block";
+    n.textContent = ST.lang==="ru"
+      ? `Ответьте на все ${LIK.length}. Пропущено: ${LIK.length-Object.keys(ST.lik).length}.`
+      : `Answer all ${LIK.length}. Missing: ${LIK.length-Object.keys(ST.lik).length}.`;
+    return;
+  }
+  hide("mod4"); show("mod5"); upd(5,5); window.scrollTo({top:0,behavior:"smooth"});
+};
+$("refBack").onclick = ()=>{ hide("mod5"); show("mod4"); upd(4,5); window.scrollTo({top:0,behavior:"smooth"}); };
+$("refFinish").onclick = ()=>{
+  ST.ref.r1 = $("ref1").value.trim();
+  ST.ref.r2 = $("ref2").value.trim();
+  ST.ref.r3 = $("ref3").value.trim();
+  hide("mod5"); buildReport(); window.scrollTo({top:0,behavior:"smooth"});
+};
+$("restartBtn").onclick = ()=>location.reload();
+
+/* =============================================================
+   SCORING
+   ============================================================= */
+function scaleOfSJT(){
+  const res = {};
+  Object.keys(SCALES).forEach(k=>res[k]={sjt:[],lik:[],vign:[],cog:null,total:0,count:0});
+  SJT.forEach(it=>{ const i=ST.sjt[it.id]; if(i===undefined) return;
+    res[it.scale].sjt.push(it.o[i].s/3*100); });
+  VIGN.forEach(it=>{ const i=ST.vign[it.id]; if(i===undefined) return;
+    res[it.scale].vign.push(it.o[i].s/3*100); });
+  LIK.forEach(it=>{ const v=ST.lik[it.id]; if(v===undefined) return;
+    const adj = it.rev ? (6-v) : v;
+    res[it.scale].lik.push((adj-1)/4*100); });
+  res.kog.cog = ((ST.cog.switchAcc||0)+(ST.cog.patternScore||0))/2*100;
+  res.vol.cog = (ST.cog.memScore||0)*100;
+  Object.keys(res).forEach(k=>{
+    const r = res[k];
+    const parts = [...r.sjt,...r.vign,...r.lik, r.cog!==null?r.cog:null].filter(x=>x!==null&&x!==undefined);
+    r.total = parts.length ? parts.reduce((a,b)=>a+b,0)/parts.length : 0;
+    r.count = parts.length;
+  });
+  return res;
+}
+function levelOf(p){
+  if(p<40) return {key:"low",label:T("level.low")};
+  if(p<65) return {key:"mid",label:T("level.mid")};
+  return {key:"good",label:T("level.good")};
+}
+
+/* =============================================================
+   REPORT
+   ============================================================= */
+function buildReport(){
+  const sc = scaleOfSJT();
+  const overall = Object.values(sc).reduce((a,r)=>a+r.total,0)/7;
+  ST.results = {sc, overall};
+  renderReport();
+  show("report"); $("report").classList.add("show");
+  $("pbar").style.width = "100%";
+}
+
+function renderReport(){
+  const {sc, overall} = ST.results;
+  const lvl = levelOf(overall);
+  const arc = $("donutArc"), circ = 2*Math.PI*76;
+  setTimeout(()=>{ arc.style.transition="stroke-dashoffset 1.4s ease";
+    arc.style.strokeDashoffset = circ*(1-overall/100); }, 100);
+  $("totPct").textContent = Math.round(overall)+"%";
+  $("lvlLabel").textContent = (ST.lang==="ru"?"Уровень: ":"Level: ")+lvl.label;
+
+  const sorted = Object.entries(sc).sort((a,b)=>b[1].total-a[1].total);
+  const strong = sorted[0], weak = sorted[6];
+  const intro = {
+    ru:{
+      low:"Ваш САК на низком уровне. В новых ситуациях может быть трудно. Но САК развивается: начните с малых проб и рефлексии.",
+      mid:"У вас средний уровень САК. Есть рабочие стратегии, но некоторые компоненты требуют развития.",
+      good:"У вас высокий уровень САК. Развитый репертуар метанавыков помогает входить в новые среды."
+    },
+    en:{
+      low:"Your SAC is at a low level. New situations may feel difficult. But SAC develops: start with small trials and reflection.",
+      mid:"You have a medium SAC level. Working strategies exist, but some components need development.",
+      good:"You have a high SAC level. A developed repertoire helps you enter new environments."
+    }
+  }[ST.lang][lvl.key];
+
+  $("summaryText").textContent = ST.lang==="ru"
+    ? `${intro} Сильнейший — «${SCALES[strong[0]].ru}» (${Math.round(strong[1].total)}%), зона роста — «${SCALES[weak[0]].ru}» (${Math.round(weak[1].total)}%).`
+    : `${intro} Strongest — "${SCALES[strong[0]].en}" (${Math.round(strong[1].total)}%), growth — "${SCALES[weak[0]].en}" (${Math.round(weak[1].total)}%).`;
+
+  const subC = $("subscales"); subC.innerHTML = "";
+  Object.keys(SCALES).forEach(k=>{
+    const r = sc[k], l = levelOf(r.total), diff = r.total-overall;
+    const tag = diff>=12 ? `<span class="tag res">${ST.lang==="ru"?"ресурс":"resource"}</span>`
+              : diff<=-12 ? `<span class="tag def">${ST.lang==="ru"?"дефицит":"deficit"}</span>`
+              : `<span class="tag ok">${ST.lang==="ru"?"баланс":"balanced"}</span>`;
+    subC.innerHTML += `
+      <div class="sub">
+        <div class="head"><span class="n">${SCALES[k][ST.lang]} ${tag}</span><span class="v">${Math.round(r.total)}%</span></div>
+        <div class="track"><div class="f ${l.key}" data-w="${r.total}" style="width:0%"></div></div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:5px;">${SCALES[k][ST.lang+"D"]}</div>
+      </div>`;
+  });
+  setTimeout(()=>subC.querySelectorAll(".f").forEach(f=>f.style.width = f.dataset.w+"%"), 200);
+
+  const interp = $("interpretation");
+  let iH = "";
+  const strengths = sorted.filter(([k,r])=>r.total >= overall+8).slice(0,3);
+  const weaks = sorted.filter(([k,r])=>r.total <= overall-8).slice(-3).reverse();
+  const resLbl = ST.lang==="ru"?"Ваши ресурсы:":"Your resources:";
+  const grLbl = ST.lang==="ru"?"Зоны роста:":"Growth areas:";
+  if(strengths.length){
+    iH += `<div class="rec good"><b>${resLbl}</b> ` + strengths.map(([k])=>`«${SCALES[k][ST.lang]}»`).join(", ") + `.</div>`;
+  }
+  if(weaks.length){
+    iH += `<div class="rec warn"><b>${grLbl}</b> ` + weaks.map(([k])=>`«${SCALES[k][ST.lang]}»`).join(", ") + `.</div>`;
+  }
+  if(!iH) iH = `<div class="rec">${ST.lang==="ru"?"Профиль сбалансирован.":"Profile is balanced."}</div>`;
+  interp.innerHTML = iH;
+
+  const recs = ST.lang==="ru" ? {
+    kog:"<b>Когнитивный:</b> дневник наблюдений за средой; разбирайте одну ситуацию в неделю.",
+    emo:"<b>Эмоциональный:</b> дыхание 4-7-8; дневник эмоций; самосострадание.",
+    kom:"<b>Коммуникативный:</b> «я-сообщения», активное слушание, границы.",
+    vol:"<b>Волевой:</b> микрошаги 15 минут, Помодоро, трекер.",
+    etp:"<b>Этико-правовой:</b> изучите ТК; тренируйте фразы отказа.",
+    est:"<b>Эстетический:</b> замечайте 3 красивых объекта в день.",
+    kar:"<b>Карьерный:</b> месячный анализ опыта; карта навыков."
+  } : {
+    kog:"<b>Cognitive:</b> observation journal; analyze one situation weekly.",
+    emo:"<b>Emotional:</b> 4-7-8 breathing; emotion diary; self-compassion.",
+    kom:"<b>Communicative:</b> I-messages, active listening, boundaries.",
+    vol:"<b>Volitional:</b> 15-min micro-steps, Pomodoro, tracker.",
+    etp:"<b>Ethico-legal:</b> study labor law; practice refusal phrases.",
+    est:"<b>Aesthetic:</b> notice 3 beautiful objects daily.",
+    kar:"<b>Career:</b> monthly experience analysis; skills map."
+  };
+  const rc = $("recommendations");
+  const prLbl = ST.lang==="ru"?"Приоритетные направления:":"Priority areas:";
+  let rH = `<h3 style="font-size:.95rem;margin:14px 0 10px;color:var(--accent);">${prLbl}</h3>`;
+  sorted.slice(0,3).forEach(([k,r],i)=>{
+    rH += `<div class="rec"><b>${i+1}. ${SCALES[k][ST.lang]} (${Math.round(r.total)}%)</b><br>${recs[k]}</div>`;
+  });
+  rc.innerHTML = rH;
+}
+
+/* =============================================================
+   SUBMISSION
+   ============================================================= */
+const consentChk = $("consentChk");
+consentChk.addEventListener("change", ()=>{ $("sendBtn").disabled = !consentChk.checked; });
+
+function buildPayload(){
+  const {sc, overall} = ST.results;
+  const scores = {};
+  Object.keys(sc).forEach(k=>{
+    scores[k] = {
+      name: SCALES[k].en,
+      total: +sc[k].total.toFixed(2),
+      sjt: sc[k].sjt.length ? +(sc[k].sjt.reduce((a,b)=>a+b,0)/sc[k].sjt.length).toFixed(2) : null,
+      likert: sc[k].lik.length ? +(sc[k].lik.reduce((a,b)=>a+b,0)/sc[k].lik.length).toFixed(2) : null,
+      vignette: sc[k].vign.length ? +(sc[k].vign.reduce((a,b)=>a+b,0)/sc[k].vign.length).toFixed(2) : null,
+      cognitive: sc[k].cog
+    };
+  });
+  return {
+    lab: CONFIG.labName,
+    version: CONFIG.version,
+    timestamp: new Date().toISOString(),
+    lang: ST.lang,
+    contactEmail: $("contactEmail").value.trim() || null,
+    demographics: ST.demo,
+    scores,
+    overallSAC: +overall.toFixed(2),
+    cognitive: ST.cog,
+    rawAnswers: {sjt: ST.sjt, vignettes: ST.vign, likert: ST.lik},
+    reflections: {r1: ST.ref.r1, r2: ST.ref.r2, r3: ST.ref.r3}
+  };
+}
+
+function setStatus(msg, type){
+  $("sendStatus").innerHTML = msg ? `<div class="notice ${type||''}">${msg}</div>` : "";
+}
+
+$("sendBtn").addEventListener("click", async ()=>{
+  if(!consentChk.checked){ setStatus(T("sub.needConsent"), "err"); return; }
+  $("sendBtn").disabled = true;
+  setStatus(T("sub.wait"), "");
+  const payload = buildPayload();
+  const endpoint = `https://formsubmit.co/ajax/${CONFIG.email}`;
+  try{
+    const resp = await fetch(endpoint, {
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body: JSON.stringify({
+        _subject: `[${CONFIG.version}] New SAC result`,
+        _template: "table",
+        _captcha: "false",
+        ...payload
+      })
+    });
+    if(!resp.ok) throw new Error("HTTP "+resp.status);
+    setStatus(T("sub.ok"), "ok");
+  }catch(err){
+    console.error(err);
+    setStatus(T("sub.err"), "err");
+    $("sendBtn").disabled = false;
+  }
+});
+
+$("mailBtn").addEventListener("click", ()=>{
+  if(!consentChk.checked){ setStatus(T("sub.needConsent"), "err"); return; }
+  const payload = buildPayload();
+  const subj = encodeURIComponent(`[${CONFIG.version}] SAC result`);
+  const body = encodeURIComponent(JSON.stringify(payload, null, 2));
+  window.location.href = `mailto:${CONFIG.email}?subject=${subj}&body=${body}`;
+});
+
+/* =============================================================
+   INIT
+   ============================================================= */
+document.querySelectorAll("[data-lang-btn]").forEach(b=>{
+  b.addEventListener("click", ()=>setLang(b.dataset.langBtn));
+});
+let saved = "ru";
+try{ saved = localStorage.getItem("sac_lang") || "ru"; }catch(e){}
+if(!["ru","en"].includes(saved)) saved = "ru";
+ST.lang = saved;
+applyLang();
+</script>
+</body>
+</html>

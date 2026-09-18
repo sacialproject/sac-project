@@ -1,0 +1,7 @@
+@misc{sacproject2026,
+  title = {SAC PROJECT: Social Adaptation Capital Theory and Assessment},
+  author = {SAC PROJECT},
+  year = {2026},
+  version = {2.0},
+  url = {https://github.com/sacproject/sac-project}
+}
