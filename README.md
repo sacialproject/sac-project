@@ -1,3 +1,5 @@
+<img width="1920" height="936" alt="2026-09-18_15-59-41" src="https://github.com/user-attachments/assets/e5b196d6-6cff-487a-9435-c7caaf145984" />
+
 # SAC PROJECT
 
 **Social Adaptation Capital — open theory and bilingual assessment of adaptation meta-skills.**
